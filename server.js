@@ -1,10 +1,26 @@
 'user strict'
 
-const { consumerQueue } = require('./src/services/consumerQueue.service')
+const { consumerQueue, consumerToQueueNormal, consumerToQueueFailed } = require('./src/services/consumerQueue.service')
 
 const queueName = 'test-topic'
-consumerQueue(queueName).then(() => {
-    console.log(`Message consumer started ${queueName}`)
+// consumerQueue(queueName).then(() => {
+//     console.log(`Message consumer started ${queueName}`)
+// }).catch(error => {
+//     {
+//         console.log(`Message Error:, ${error.message}`)
+//     }
+// })
+
+consumerToQueueNormal(queueName).then(() => {
+    console.log(`Message consumerToQueueNormal started ${queueName}`)
+}).catch(error => {
+    {
+        console.log(`Message Error:, ${error.message}`)
+    }
+})
+
+consumerToQueueFailed(queueName).then(() => {
+    console.log(`Message consumerToQueueFailed started ${queueName}`)
 }).catch(error => {
     {
         console.log(`Message Error:, ${error.message}`)
